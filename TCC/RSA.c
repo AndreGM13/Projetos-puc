@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 unsigned long long p = 6399395417ULL; //teste primos com 10 digitos
 unsigned long long q = 2196825613ULL;
@@ -31,6 +32,8 @@ int main(){
     unsigned long long texto_cifrado[100]; 
     char texto_decriptado[100];
 
+    clock_t inicio = clock();
+
     for (int i = 0; i < tamanho; i++) {
         unsigned long long m_letra = (unsigned long long)mensagem[i]; 
         
@@ -38,7 +41,11 @@ int main(){
         
         printf("Letra '%c' -> %llu\n", mensagem[i], texto_cifrado[i]);
     }
-    
+    clock_t fim = clock();
+
+
+    printf("\ntempo de encriptacao da mensagem = %.10f segundos\n", (double)(fim - inicio));
+
     //decriptação
     for (int i = 0; i < tamanho; i++) {
         unsigned long long m_original = squareAndMultiply(texto_cifrado[i], d);
