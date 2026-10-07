@@ -41,10 +41,11 @@ int main(){
         
         printf("Letra '%c' -> %llu\n", mensagem[i], texto_cifrado[i]);
     }
+    
     clock_t fim = clock();
 
 
-    printf("\ntempo de encriptacao da mensagem = %.10f segundos\n", (double)(fim - inicio));
+    printf("\ntempo de encriptacao da mensagem = %e segundos\n", (double)((fim - inicio)/CLOCKS_PER_SEC));
 
     //decriptação
     for (int i = 0; i < tamanho; i++) {
