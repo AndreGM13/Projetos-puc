@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <chrono>
+#include <iostream>
 
 unsigned long long p = 6399395417ULL; //teste primos com 10 digitos
 unsigned long long q = 2196825613ULL;
@@ -13,11 +15,14 @@ unsigned long long d = 0;
     chave pública = (e , n)
     chave privada = (d , n)
 */
-
-char* encriptarMensagem(char);
-char* decriptarMensagem(char);
+char encriptarMensagem(char);
+char decriptarMensagem(char);
 unsigned long long squareAndMultiply(unsigned long long, unsigned long long);
 unsigned long long calcular_d(unsigned long long, unsigned long long);
+
+
+using namespace std;
+using namespace std::chrono;
 
 int main(){
     unsigned long long phi = (p - 1) * (q - 1);
@@ -32,20 +37,21 @@ int main(){
     unsigned long long texto_cifrado[100]; 
     char texto_decriptado[100];
 
-    clock_t inicio = clock();
+    auto inicio = high_resolution_clock::now();
 
     for (int i = 0; i < tamanho; i++) {
-        unsigned long long m_letra = (unsigned long long)mensagem[i]; 
+        unsigned long long m_letra = (unsigned long long)mensagem[i];  
         
         texto_cifrado[i] = squareAndMultiply(m_letra, e);
         
-        printf("Letra '%c' -> %llu\n", mensagem[i], texto_cifrado[i]);
+        printf("Letra '%c' -> %llu\n", mensagem[i], texto_cifrado[i]);  
     }
     
-    clock_t fim = clock();
+    auto fim = high_resolution_clock::now();
 
+    auto total = duration_cast<nanoseconds>(fim - inicio);
 
-    printf("\ntempo de encriptacao da mensagem = %e segundos\n", (double)((fim - inicio)/CLOCKS_PER_SEC));
+    cout << "duracao =" << " " << total.count() << " " << " nanosegundos \n";
 
     //decriptação
     for (int i = 0; i < tamanho; i++) {
