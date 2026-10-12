@@ -15,8 +15,6 @@ unsigned long long d = 0;
     chave pública = (e , n)
     chave privada = (d , n)
 */
-char encriptarMensagem(char);
-char decriptarMensagem(char);
 unsigned long long squareAndMultiply(unsigned long long, unsigned long long);
 unsigned long long calcular_d(unsigned long long, unsigned long long);
 
